@@ -4,7 +4,7 @@ from github import Github, GithubIntegration
 
 app = Flask(__name__)
 
-app_id = '<your_app_number_here>'
+app_id = 311883
 
 # Read the bot certificate
 with open(
@@ -27,6 +27,7 @@ def issue_opened_event(repo, payload):
     response = f"Thanks for opening this issue, @{author}! " \
                 f"The repository maintainers will look into it ASAP! :speech_balloon:"
     issue.create_comment(f"{response}")
+    issue.add_to_labels("Bug")
 
 @app.route("/", methods=['POST'])
 def bot():
